@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button } from 'bootstrap-4-react';
+import { Button, Container } from 'bootstrap-4-react';
 import ListViewer from '../../components/ListViewer';
+require('../../icons');
 
 class App extends Component {
   state = {
@@ -9,13 +10,15 @@ class App extends Component {
         name: 'Andy',
         age: 37,
         quote: 'This is my quote',
-        hobbies: ['Basketball', 'art', 'Drone racing']
+        hobbies: ['Basketball', 'art', 'Drone racing'],
+        completed: false
       },
       {
         name: 'Bob',
         age: 32,
         quote: 'This is another persons quote',
-        hobbies: ['Racing', 'Music', 'Dancing']
+        hobbies: ['Racing', 'Music', 'Dancing'],
+        completed: false
       }
     ]
   };
@@ -33,18 +36,25 @@ class App extends Component {
         this.setState({ people: newArray });
       },
 
-      updateItem: index => {}
+      updateItem: index => {
+        let newArray = [...this.state.people];
+        let isCompleted = newArray[index].completed;
+        isCompleted ? (isCompleted = false) : (isCompleted = true);
+        newArray[index].completed = isCompleted;
+        this.setState({ people: newArray });
+      }
     };
 
     const newPerson = {
       name: 'Bob',
       age: 32,
-      quote: 'something else',
-      hobbies: ['Racing', 'Music', 'Dancing']
+      quote: '',
+      hobbies: ['Racing', 'Music', 'Dancing'],
+      completed: false
     };
 
     return (
-      <div className='App p-2'>
+      <Container mt='2'>
         <ListViewer data={this.state} {...functions} />
         <Button
           className='bg-primary text-white'
@@ -54,7 +64,7 @@ class App extends Component {
         >
           Add Item
         </Button>
-      </div>
+      </Container>
     );
   }
 }

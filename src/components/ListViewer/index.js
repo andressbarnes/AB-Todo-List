@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BDiv, Form, Button, Col, Row } from 'bootstrap-4-react';
+import './listViewer.css';
 
 class listViewer extends Component {
   constructor(props) {
@@ -9,7 +11,6 @@ class listViewer extends Component {
   }
 
   handleChange(event) {
-    console.log(this.props.data);
     let newArray = [...this.props.data.people];
     newArray[event.target.id].quote = event.target.value;
     this.setState({ people: newArray[event.target.id] });
@@ -18,30 +19,66 @@ class listViewer extends Component {
   render() {
     const { data, ...func } = this.props;
 
+    let itemsDrag = document.getElementsByClassName('.item');
+    [].forEach.call(itemsDrag, col => {
+      col.addEventListener('dragstart', handleDragStart, false);
+    });
+
+    const handleDragStart = e => {
+      this.style.opacity = '0.4'; // this / e.target is the source node.
+    };
+
     const items = data.people.map((el, i) => (
-      <Col lg='12' key={i}>
+      <Col sm='12' key={i}>
         <BDiv
           display='flex'
           justifyContent='between'
-          className='bg-warning mb-1 p-1'
+          className={`${
+            !el.completed ? 'bg-warning' : 'bg-success'
+          } mb-1 p-1 item`}
+          draggable='true'
         >
-          <div className='text-white m-1 p-1'>{el.name}</div>
+          <Button
+            sm
+            link
+            className='text-white'
+            onClick={() => {
+              //func.removeItem(i);
+            }}
+          >
+            <FontAwesomeIcon className='fa-lg' icon='grip-lines' />
+          </Button>
+          <Button
+            sm
+            link
+            className='text-white'
+            onClick={() => {
+              func.updateItem(i);
+            }}
+          >
+            <FontAwesomeIcon
+              className='fa-lg'
+              icon={`${el.completed ? 'times' : 'check'}`}
+            />
+          </Button>
           <Form.Input
             id={i}
             sm
             className='m-1'
-            placeholder='Default input'
+            placeholder='Shit to do...'
             value={el.quote}
             type='text'
             onChange={this.handleChange}
           />
           <Button
-            className='bg-danger text-white m-1 p-1'
+            sm
+            link
+            className='text-white'
             onClick={() => {
               func.removeItem(i);
             }}
           >
-            remove
+            <FontAwesomeIcon className='fa-lg' icon='trash' />
           </Button>
         </BDiv>
       </Col>
