@@ -8,3 +8,11 @@
   -khtml-user-drag: element;
   -webkit-user-drag: element;
 }
+.item.over {
+  border: 2px dashed #000;
+  background: red;
+}
+
+.passthrough {
+  pointer-events: none;
+}

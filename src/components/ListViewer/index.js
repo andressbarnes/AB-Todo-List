@@ -6,8 +6,19 @@ import './listViewer.css';
 class listViewer extends Component {
   constructor(props) {
     super(props);
-
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  addListeners() {
+    //do things
+  }
+
+  componentDidMount() {
+    this.addListeners();
+  }
+
+  componentDidUpdate() {
+    this.addListeners();
   }
 
   handleChange(event) {
@@ -19,34 +30,19 @@ class listViewer extends Component {
   render() {
     const { data, ...func } = this.props;
 
-    let itemsDrag = document.getElementsByClassName('.item');
-    [].forEach.call(itemsDrag, col => {
-      col.addEventListener('dragstart', handleDragStart, false);
-    });
-
-    const handleDragStart = e => {
-      this.style.opacity = '0.4'; // this / e.target is the source node.
-    };
-
-    const items = data.people.map((el, i) => (
+    const items = data.items.map((el, i) => (
       <Col sm='12' key={i}>
         <BDiv
+          draggable='true'
+          data-id={`00${i}`}
           display='flex'
           justifyContent='between'
-          className={`${
+          className={`item ${
             !el.completed ? 'bg-warning' : 'bg-success'
-          } mb-1 p-1 item`}
-          draggable='true'
+          } mb-1 p-1`}
         >
-          <Button
-            sm
-            link
-            className='text-white'
-            onClick={() => {
-              //func.removeItem(i);
-            }}
-          >
-            <FontAwesomeIcon className='fa-lg' icon='grip-lines' />
+          <Button sm link className='text-white dragButton'>
+            <FontAwesomeIcon className='passthrough fa-lg' icon='grip-lines' />
           </Button>
           <Button
             sm
@@ -64,7 +60,7 @@ class listViewer extends Component {
           <Form.Input
             id={i}
             sm
-            className='m-1'
+            className='m-1 inputToDo'
             placeholder='Shit to do...'
             value={el.quote}
             type='text'
