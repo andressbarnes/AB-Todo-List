@@ -1,0 +1,63 @@
+.toDoText {
+  background: #ffffff3a;
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px;
+  margin: 4px;
+}
+
+.toDoText.complete {
+  color: #166e00;
+}
+
+.toDoText.incomplete {
+  color: #a36a00;
+}
+
+.newToDoContainer {
+  height: 60px;
+  padding: 10px;
+  background: #cfcfcf;
+  margin-bottom: 4px;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.inputText {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+}
+
+/*This exits because the drag hangle cant
+take a regular button in firefox or safari */
+.dragHandle {
+  margin: 4px;
+  width: 40px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 3.2px;
+}
+
+.dragHandle:hover {
+  background: #ffffff44;
+}
+
+.todo-action-button {
+  margin: 4px;
+  width: 40px;
+}
+
+.todo-action-button.ml {
+  margin-left: 2px;
+}
+
+.todo-action-button.mr {
+  margin-right: 2px;
+}
+
+.todo-action-button:hover {
+  background: #ffffff44;
+}

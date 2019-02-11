@@ -12,6 +12,7 @@ const InputField = props => {
       value={text}
       type='text'
       onChange={custom.onChange}
+      htmlDisabled
     />
   );
 };

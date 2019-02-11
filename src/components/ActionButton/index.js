@@ -9,7 +9,7 @@ const ActionButton = props => {
       sm
       link
       primary={custom.color}
-      className='text-white'
+      className={`${custom.buttonType} text-white`}
       onClick={() => action(custom)}
     >
       <FontAwesomeIcon className='fa-lg' icon={icon} />

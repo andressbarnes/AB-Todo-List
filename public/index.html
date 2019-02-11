@@ -6,7 +6,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+      />
     <meta name="theme-color" content="#000000" />
     <!--
       manifest.json provides metadata used when your web app is added to the
@@ -37,5 +37,11 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      // before React is loaded
+      if (window.location.port !== 3000) {
+          //__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function() {};
+      }
+  </script>
   </body>
 </html>

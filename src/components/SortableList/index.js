@@ -1,43 +1,10 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BDiv, Button } from 'bootstrap-4-react';
-import ActionButton from '../ActionButton';
-import FormField from '../InputField';
-import {
-  sortableContainer,
-  sortableElement,
-  sortableHandle
-} from 'react-sortable-hoc';
+import { BDiv } from 'bootstrap-4-react';
+//import FormField from '../InputField';
+import NewToDoInput from '../NewToDoInput';
+import { SortableItem } from './SortableItem';
+import { sortableContainer } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
-
-const DragHandle = sortableHandle(() => (
-  <Button sm link className='text-white'>
-    <FontAwesomeIcon className='fa-lg' icon='grip-lines' />
-  </Button>
-));
-
-const SortableItem = sortableElement(({ value, func, rest }) => (
-  <BDiv
-    display='flex'
-    justifyContent='between'
-    className={`${!value.isCompleted ? 'bg-warning' : 'bg-success'} mb-1 p-1`}
-  >
-    <DragHandle />
-    <ActionButton
-      action={func.updateItem}
-      icon={value.isCompleted ? 'times' : 'check'}
-      index={rest}
-    />
-    <FormField
-      sm
-      text={value.desc}
-      id={rest}
-      onChange={func.handleChange}
-      placeholder='Shit to do...'
-    />
-    <ActionButton action={func.removeItem} icon='trash' index={rest} />
-  </BDiv>
-));
 
 const SortableContainer = sortableContainer(({ children }) => {
   return <div>{children}</div>;
@@ -61,17 +28,17 @@ class SortableList extends Component {
     }));
   };
 
-  addItem = () => {
-    const item = { desc: '', isCompleted: false };
-    this.setState(prevState => ({
-      items: [...prevState.items, item]
-    }));
-  };
-
   render() {
     const { items } = this.state;
 
-    const functions = {
+    const listActions = {
+      addItem: () => {
+        const item = { desc: '', isCompleted: false };
+        this.setState(prevState => ({
+          items: [...prevState.items, item]
+        }));
+      },
+
       removeItem: val => {
         const { index } = val;
         let newArray = [...this.state.items];
@@ -98,10 +65,18 @@ class SortableList extends Component {
 
     return (
       <div>
+        <BDiv className='newToDoContainer'>
+          <NewToDoInput
+            func={listActions}
+            className='inputText'
+            placeholder='Shit to do...'
+          />
+        </BDiv>
+
         <SortableContainer onSortEnd={this.onSortEnd} useDragHandle>
           {items.map((value, index) => (
             <SortableItem
-              func={functions}
+              func={listActions}
               key={`item-${index}`}
               rest={index}
               index={index}
@@ -109,7 +84,6 @@ class SortableList extends Component {
             />
           ))}
         </SortableContainer>
-        <ActionButton action={this.addItem} icon='plus' color={'primary'} />
       </div>
     );
   }
