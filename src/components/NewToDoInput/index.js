@@ -4,11 +4,24 @@ import ActionButton from '../ActionButton';
 
 const NewToDoInput = props => {
   const { func } = props;
+
+  const validateToDoItem = e => {
+    const inputValue = document.querySelector('#toDoInput');
+    const key = e.which || e.keyCode;
+    if (key === 13 && inputValue.value !== '') {
+      const toDoText = inputValue.value;
+      inputValue.value = '';
+      func.addItem(toDoText);
+    }
+  };
+
+  document.addEventListener('keydown', validateToDoItem);
+
   return (
     <InputGroup mb='3'>
-      <Form.Input type='text' />
+      <Form.Input id='toDoInput' type='text' />
       <InputGroup.Append>
-        <ActionButton action={func.addItem} icon='plus' color={'primary'} />
+        <ActionButton action={validateToDoItem} icon='plus' color={'primary'} />
       </InputGroup.Append>
     </InputGroup>
   );

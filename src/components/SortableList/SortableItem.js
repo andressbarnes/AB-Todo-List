@@ -19,7 +19,7 @@ export const SortableItem = sortableElement(({ value, func, rest }) => (
     <div
       className={`toDoText ${value.isCompleted ? 'complete' : 'incomplete'}`}
     >
-      test
+      {value.desc}
     </div>
     <ActionButton
       buttonType='todo-action-button ml'

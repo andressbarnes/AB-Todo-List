@@ -1,10 +1,10 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTimes,
-  faGripLines,
+  faGripVertical,
   faTrash,
   faCheck,
   faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTimes, faGripLines, faTrash, faCheck, faPlus);
+library.add(faTimes, faGripVertical, faTrash, faCheck, faPlus);

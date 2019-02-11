@@ -32,10 +32,12 @@ class SortableList extends Component {
     const { items } = this.state;
 
     const listActions = {
-      addItem: () => {
-        const item = { desc: '', isCompleted: false };
+      addItem: text => {
+        const item = { desc: text, isCompleted: false };
+        let newState = this.state.items.slice();
+        newState.unshift(item);
         this.setState(prevState => ({
-          items: [...prevState.items, item]
+          items: newState
         }));
       },
 
