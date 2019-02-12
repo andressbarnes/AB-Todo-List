@@ -1,7 +1,15 @@
+#About
+
 This project is a draggable TODO list component.
 The current functionality is localized but can be hooked up to an API (coming soon)
 
-![](https://i.imgur.com/rRdbmot.png | width=100)
+## Usage
+
+TODO: Write usage instructions
+
+## Demo
+
+![](https://i.imgur.com/rRdbmot.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
