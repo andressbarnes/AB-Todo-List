@@ -57,5 +57,9 @@ take a regular button in firefox or safari */
 }
 
 .todo-action-button:hover {
-  background: #ffffff44;
+  background: rgba(255, 255, 255, 0.164);
+}
+
+.todo-action-button:active {
+  background: rgba(255, 255, 255, 0.486);
 }
