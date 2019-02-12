@@ -15,13 +15,23 @@ const NewToDoInput = props => {
     }
   };
 
+  //TODO use DRY method...
+  const pressAddButton = e => {
+    const inputValue = document.querySelector('#toDoInput');
+    const toDoText = inputValue.value;
+    if (toDoText !== '') {
+      inputValue.value = '';
+      func.addItem(toDoText);
+    }
+  };
+
   document.addEventListener('keydown', validateToDoItem);
 
   return (
     <InputGroup mb='3'>
       <Form.Input id='toDoInput' type='text' />
       <InputGroup.Append>
-        <ActionButton action={validateToDoItem} icon='plus' color={'primary'} />
+        <ActionButton action={pressAddButton} icon='plus' color={'primary'} />
       </InputGroup.Append>
     </InputGroup>
   );

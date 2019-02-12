@@ -45,7 +45,9 @@ class SortableList extends Component {
         const { index } = val;
         let newArray = [...this.state.items];
         newArray.splice(index, 1);
-        this.setState({ items: newArray });
+        this.setState(prevState => ({
+          items: newArray
+        }));
       },
 
       updateItem: val => {
@@ -54,14 +56,18 @@ class SortableList extends Component {
         let isCompleted = newArray[index].isCompleted;
         isCompleted ? (isCompleted = false) : (isCompleted = true);
         newArray[index].isCompleted = isCompleted;
-        this.setState({ item: newArray });
+        this.setState(prevState => ({
+          items: newArray
+        }));
       },
 
       handleChange: event => {
         //console.log(event.target.id);
         let newArray = [...this.state.items];
         newArray[event.target.id].desc = event.target.value;
-        this.setState({ items: newArray });
+        this.setState(prevState => ({
+          items: newArray
+        }));
       }
     };
 
