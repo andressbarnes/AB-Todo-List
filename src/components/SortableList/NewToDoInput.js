@@ -29,7 +29,7 @@ export const NewToDoInput = props => {
 
   return (
     <InputGroup mb='3'>
-      <Form.Input id='toDoInput' type='text' />
+      <Form.Input placeholder='Shit to do...' id='toDoInput' type='text' />
       <InputGroup.Append>
         <ActionButton action={pressAddButton} icon='plus' color={'primary'} />
       </InputGroup.Append>

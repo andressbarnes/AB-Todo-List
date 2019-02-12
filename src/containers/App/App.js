@@ -5,9 +5,8 @@ import SortableList from '../../components/SortableList';
 class App extends Component {
   render() {
     return (
-      <Container mt='2'>
-        {/* <ListViewer data={this.state} {...functions} /> */}
-        <SortableList data={this.state} />
+      <Container mt='2' p='1' shadow bg='white'>
+        <SortableList />
       </Container>
     );
   }
