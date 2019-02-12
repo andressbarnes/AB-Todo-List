@@ -4,9 +4,9 @@ This is a simple to list component to manage todo lists of all types. The compoe
 
 ## Dependacies
 
-[react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc)
-[bootstrap-4-react](http://bootstrap-4-react.com)
-[Font Awesome](https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers)
+- [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc)
+- [bootstrap-4-react](http://bootstrap-4-react.com)
+- [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers)
 
 ## Demo
 
