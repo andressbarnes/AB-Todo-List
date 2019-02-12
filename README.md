@@ -1,3 +1,6 @@
+This project is a draggable TODO list component.
+The current functionality is localized but can be hooked up to an API (coming soon)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

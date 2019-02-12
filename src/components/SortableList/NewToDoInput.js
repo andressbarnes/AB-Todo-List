@@ -1,8 +1,8 @@
 import React from 'react';
 import { InputGroup, Form } from 'bootstrap-4-react';
-import ActionButton from '../ActionButton';
+import ActionButton from './ActionButton';
 
-const NewToDoInput = props => {
+export const NewToDoInput = props => {
   const { func } = props;
 
   const validateToDoItem = e => {
@@ -36,5 +36,3 @@ const NewToDoInput = props => {
     </InputGroup>
   );
 };
-
-export default NewToDoInput;

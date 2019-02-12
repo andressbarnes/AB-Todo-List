@@ -1,6 +1,6 @@
 import React from 'react';
 import { BDiv } from 'bootstrap-4-react';
-import ActionButton from '../ActionButton';
+import ActionButton from './ActionButton';
 import { sortableElement } from 'react-sortable-hoc';
 import { DragHandle } from './DragHandle';
 export const SortableItem = sortableElement(({ value, func, rest }) => (

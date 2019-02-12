@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { BDiv } from 'bootstrap-4-react';
-//import FormField from '../InputField';
-import NewToDoInput from '../NewToDoInput';
-import { SortableItem } from './SortableItem';
-import { sortableContainer } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
+import { sortableContainer } from 'react-sortable-hoc';
+
+//custom elements
+import { NewToDoInput } from './NewToDoInput';
+import { SortableItem } from './SortableItem';
+
+//styles
+require('./icons');
+require('./index.css');
 
 const SortableContainer = sortableContainer(({ children }) => {
   return <div>{children}</div>;
 });
 
 class SortableList extends Component {
+  //localized state
+  //TODO - Convert to redux
   state = {
     items: [
       { desc: 'Walk the dog', isCompleted: false },
@@ -31,6 +38,8 @@ class SortableList extends Component {
   render() {
     const { items } = this.state;
 
+    //object of all actions available in the component
+    //TODO incorporate remote API functionality
     const listActions = {
       addItem: text => {
         const item = { desc: text, isCompleted: false };
