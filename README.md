@@ -1,7 +1,7 @@
 This project is a draggable TODO list component.
 The current functionality is localized but can be hooked up to an API (coming soon)
 
-![To Do Component](https://i.imgur.com/rRdbmot.png | width=100)
+![](https://i.imgur.com/rRdbmot.png | width=100)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
