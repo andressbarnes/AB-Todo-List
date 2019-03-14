@@ -1,24 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './reducers';
 import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
-
-import { devToolsEnhancer } from 'redux-devtools-extension';
-import initialState from './reducers/initialState';
-
+import store from './store';
 require('./index.css');
-
-//const store = createStore(rootReducer);
-
-const store = createStore(
-  rootReducer,
-  initialState,
-  devToolsEnhancer()
-  // Specify custom devTools options
-);
 
 render(
   <Provider store={store}>
