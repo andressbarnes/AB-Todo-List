@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BDiv } from 'bootstrap-4-react';
-import arrayMove from 'array-move';
+
 import { sortableContainer } from 'react-sortable-hoc';
+import { addTodo, removeTodo, updateTodo, updateOrder } from '../../actions';
 
 //custom elements
 import { NewToDoInput } from './NewToDoInput';
@@ -16,62 +18,38 @@ const SortableContainer = sortableContainer(({ children }) => {
 });
 
 class SortableList extends Component {
-  //localized state
-  //TODO - Convert to redux
-  state = {
-    items: [
-      { desc: 'Walk the dog', isCompleted: false },
-      { desc: 'Clean the bathroom', isCompleted: false },
-      { desc: 'Wash the car', isCompleted: true },
-      { desc: 'Take out the trash', isCompleted: false },
-      { desc: 'Pick up the kids at 3pm', isCompleted: false },
-      { desc: 'Cook dinner', isCompleted: false }
-    ]
-  };
+  constructor(props) {
+    super(props);
+    this.updateOrder = this.props.updateOrder;
+  }
 
   onSortEnd = ({ oldIndex, newIndex }) => {
-    this.setState(({ items }) => ({
-      items: arrayMove(items, oldIndex, newIndex)
-    }));
+    const data = {
+      items: this.props.items,
+      oldIndex: oldIndex,
+      newIndex: newIndex
+    };
+    this.updateOrder(data);
   };
 
   render() {
-    const { items } = this.state;
+    console.log(this.props);
+    const { items, removeTodo, addTodo, updateTodo } = this.props;
 
-    //object of all actions available in the component
-    //TODO incorporate remote API functionality
     const listActions = {
       addItem: text => {
-        const item = { desc: text, isCompleted: false };
-        let newState = this.state.items.slice();
-        newState.unshift(item);
-        this.setState(prevState => ({
-          items: newState
-        }));
+        addTodo(text);
       },
 
       removeItem: val => {
-        const { index } = val;
-        let newArray = [...this.state.items];
-        newArray.splice(index, 1);
-        this.setState(prevState => ({
-          items: newArray
-        }));
+        removeTodo(val);
       },
 
       updateItem: val => {
-        const { index } = val;
-        let newArray = [...this.state.items];
-        let isCompleted = newArray[index].isCompleted;
-        isCompleted ? (isCompleted = false) : (isCompleted = true);
-        newArray[index].isCompleted = isCompleted;
-        this.setState(prevState => ({
-          items: newArray
-        }));
+        updateTodo(val);
       },
 
       handleChange: event => {
-        //console.log(event.target.id);
         let newArray = [...this.state.items];
         newArray[event.target.id].desc = event.target.value;
         this.setState(prevState => ({
@@ -106,4 +84,31 @@ class SortableList extends Component {
   }
 }
 
-export default SortableList;
+const mapDispatchToProps = dispatch => {
+  return {
+    removeTodo: id => {
+      dispatch(removeTodo(id));
+    },
+    addTodo: text => {
+      dispatch(addTodo(text));
+    },
+    updateTodo: id => {
+      dispatch(updateTodo(id));
+    },
+    updateOrder: data => {
+      dispatch(updateOrder(data));
+    }
+  };
+};
+
+const mapStateToProps = state => {
+  const { todosReducer } = state;
+  return {
+    items: todosReducer.items
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SortableList);

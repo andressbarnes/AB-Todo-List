@@ -13,6 +13,7 @@ export const SortableItem = sortableElement(({ value, func, rest }) => (
     <ActionButton
       buttonType='todo-action-button mr'
       action={func.updateItem}
+      uid={value.id}
       icon={value.isCompleted ? 'times' : 'check'}
       index={rest}
     />
@@ -24,6 +25,7 @@ export const SortableItem = sortableElement(({ value, func, rest }) => (
     <ActionButton
       buttonType='todo-action-button ml'
       action={func.removeItem}
+      uid={value.id}
       icon='trash'
       index={rest}
     />

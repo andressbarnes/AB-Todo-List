@@ -33,7 +33,7 @@ export const NewToDoInput = props => {
         placeholder='Stuff to do...'
         id='toDoInput'
         type='text'
-        autocomplete='off'
+        autoComplete='off'
       />
       <InputGroup.Append>
         <ActionButton action={pressAddButton} icon='plus' color={'primary'} />
