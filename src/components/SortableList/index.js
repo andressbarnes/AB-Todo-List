@@ -33,7 +33,6 @@ class SortableList extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { items, removeTodo, addTodo, updateTodo } = this.props;
 
     const listActions = {

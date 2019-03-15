@@ -54,8 +54,6 @@ const todosReducer = (state = [initialState], action) => {
         action.data.newIndex
       );
 
-      console.log(newAry);
-
       return {
         ...state,
         items: [...newAry]
