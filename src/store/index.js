@@ -4,7 +4,7 @@ import rootReducer from '../reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import initialState from '../reducers/initialState';
 
-//const store = createStore(rootReducer);
+//const store = createStore(rootReducer, initialState);
 
 const store = createStore(
   rootReducer,
